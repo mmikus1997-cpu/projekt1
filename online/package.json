@@ -1,0 +1,17 @@
+{
+  "name": "city-empire-online-dev",
+  "version": "0.46.0",
+  "private": true,
+  "scripts": {
+    "build": "python build.py",
+    "start": "bash start.sh",
+    "test:api": "python -m pytest -q",
+    "test:ui": "node tests/test-online.cjs",
+    "test:auth-ui": "node tests/test-auth-preview.cjs",
+    "test:features-ui": "node tests/test-features.cjs",
+    "test:combat-ui": "node tests/test-combat-motion.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
+}

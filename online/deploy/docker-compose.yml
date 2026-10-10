@@ -1,0 +1,22 @@
+# Uruchomienie: docker compose up -d --build
+# Kopie zapasowe wyladuja na wolumenie ce-backups — podmien na zasob zewnetrzny (NFS/S3),
+# bo kopia na tym samym dysku nie chroni przed awaria dysku.
+services:
+  city-empire:
+    build: ./online
+    image: city-empire:0.8.0
+    restart: unless-stopped
+    ports: ["8000:8000"]
+    volumes:
+      - ce-data:/app/data
+      - ce-backups:/app/backups
+    environment:
+      CITY_MODE: production
+      CITY_DB: /app/data/city_empire.sqlite3
+      CITY_BACKUP_DIR: /app/backups
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+volumes:
+  ce-data:
+  ce-backups:

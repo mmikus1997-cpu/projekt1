@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="City Empire — buduj imperium w mieście.">
+  <meta name="theme-color" content="#0B1220">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="city_empire">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>City Empire</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    /* E5: ekran ładowania WWW — widoczny, zanim Flutter pobierze silnik i zasoby */
+    html, body { margin: 0; height: 100%; background: #0B1220; }
+    #ce-loader { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 22px; background: radial-gradient(circle at 50% 40%, #16345A 0%, #0B1220 65%); z-index: 9999;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; transition: opacity .45s ease; }
+    #ce-loader.hide { opacity: 0; pointer-events: none; }
+    #ce-loader .logo { display: flex; align-items: center; gap: 12px; font-size: 34px; font-weight: 900; letter-spacing: 1px; color: #F1F5F9; }
+    #ce-loader .logo b { color: #3B82F6; }
+    #ce-loader .ring { width: 54px; height: 54px; border-radius: 50%; border: 5px solid #1E2A44; border-top-color: #D4AF37;
+      border-right-color: #3B82F6; animation: ce-spin 0.9s linear infinite; }
+    #ce-loader .bar { width: 220px; height: 5px; border-radius: 3px; background: #1E2A44; overflow: hidden; }
+    #ce-loader .bar i { display: block; width: 40%; height: 100%; border-radius: 3px; background: linear-gradient(90deg, #3B82F6, #D4AF37);
+      animation: ce-slide 1.3s ease-in-out infinite; }
+    #ce-loader small { color: #94A3B8; font-size: 13px; }
+    @keyframes ce-spin { to { transform: rotate(360deg); } }
+    @keyframes ce-slide { 0% { transform: translateX(-110%); } 100% { transform: translateX(260%); } }
+    @media (prefers-reduced-motion: reduce) { #ce-loader .ring, #ce-loader .bar i { animation-duration: 3s; } }
+  </style>
+</head>
+<body>
+  <div id="ce-loader" role="progressbar" aria-label="Wczytywanie City Empire">
+    <div class="logo">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="3" y="16" width="9" height="21" rx="1.5" fill="#3B82F6"/>
+        <rect x="15" y="5" width="11" height="32" rx="1.5" fill="#60A5FA"/>
+        <rect x="29" y="12" width="8" height="25" rx="1.5" fill="#3B82F6"/>
+        <g fill="#0B1220"><rect x="18" y="10" width="2" height="3"/><rect x="21.5" y="10" width="2" height="3"/><rect x="18" y="16" width="2" height="3"/>
+        <rect x="21.5" y="16" width="2" height="3"/><rect x="18" y="22" width="2" height="3"/><rect x="21.5" y="22" width="2" height="3"/></g>
+      </svg>
+      <span>CITY <b>EMPIRE</b></span>
+    </div>
+    <div class="ring"></div>
+    <div class="bar"><i></i></div>
+    <small id="ce-loader-msg">Wczytywanie miasta…</small>
+  </div>
+  <script>
+    // Silnik Flutter wysyła zdarzenie „flutter-first-frame” po narysowaniu pierwszej klatki (Splash aplikacji) → chowamy loader.
+    window.addEventListener('flutter-first-frame', function () {
+      var l = document.getElementById('ce-loader');
+      if (!l) return;
+      l.classList.add('hide');
+      setTimeout(function () { l.remove(); }, 500);
+    });
+    // wolne łącze: po 12 s podpowiedź, że wciąż pracujemy
+    setTimeout(function () { var m = document.getElementById('ce-loader-msg'); if (m) m.textContent = 'Pobieranie silnika gry — jeszcze chwila…'; }, 12000);
+  </script>
+  <!--
+    You can customize the "flutter_bootstrap.js" script.
+    This is useful to provide a custom configuration to the Flutter loader
+    or to give the user feedback during the initialization process.
+
+    For more details:
+    * https://docs.flutter.dev/platform-integration/web/initialization
+  -->
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

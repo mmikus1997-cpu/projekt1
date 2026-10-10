@@ -1,0 +1,24 @@
+[Unit]
+Description=CITY EMPIRE (wersja %I)
+After=network-online.target
+
+[Service]
+User=cityempire
+Group=cityempire
+# Katalog z wydaniem: skopiowany, nie rozwijany na zywo. Nigdy nie uruchamiac z repozytorium deweloperskiego.
+WorkingDirectory=/opt/city-empire
+Environment=CITY_MODE=production
+Environment=CITY_DB=/var/lib/city-empire/city_empire.sqlite3
+Environment=CITY_BACKUP_DIR=/var/lib/city-empire/backups
+ExecStart=/opt/city-empire/.venv/bin/python -m uvicorn server.app:app --host 0.0.0.0 --port 8000 --workers 1 --no-access-log
+Restart=always
+RestartSec=2
+# Twardy nadzorca procesu; backupy dziala sam proces aplikacji.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/city-empire
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

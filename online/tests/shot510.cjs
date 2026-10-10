@@ -1,0 +1,38 @@
+/* 0.51 screenshots: hub / contracts / residence (desktop+mobile) on a QA database. */
+const {chromium}=require('playwright');
+const fs=require('node:fs');
+const path=require('node:path');
+const BASE=process.env.TEST_BASE_URL||'http://127.0.0.1:3001';
+const DIR=path.join(__dirname,'..','screens51');
+fs.mkdirSync(DIR,{recursive:true});
+const PASSWORD='ui-test-password-2026';
+(async()=>{
+ const browser=await chromium.launch({headless:true});
+ const ctx=await browser.newContext({viewport:{width:1440,height:1000}});
+ if(process.env.TEST_STRIP_HEADERS==='1')await ctx.addInitScript(()=>{const original=window.fetch;window.fetch=(url,options={})=>{const headers=new Headers(options.headers);const keep={};if(headers.has('Content-Type'))keep['Content-Type']=headers.get('Content-Type');return original(url,{...options,headers:keep,credentials:'omit'});};});
+ const page=await ctx.newPage(),errors=[];
+ page.on('pageerror',e=>errors.push(e.stack));
+ const name='shot_'+Date.now().toString(36);
+ await page.goto(BASE);await page.waitForSelector('#auth-form');await page.click('[data-auth-mode=register]');
+ await page.fill('#auth-username',name);await page.fill('#auth-password',PASSWORD);await page.fill('#auth-confirm',PASSWORD);await page.check('#age-consent');await page.click('#auth-form [type=submit]');
+ await page.waitForSelector('.world-grid');
+ await page.click('[data-world="2"]');await page.fill('#character-nickname','Rekonstruktor QA');
+ if(await page.locator('#test-consent').count())await page.check('#test-consent');
+ await page.click('#character-form [type=submit]');await page.waitForFunction(()=>Network.world?.id===2);
+ await page.click('[data-online=dismiss-tutorial]');await page.waitForFunction(()=>!Network.busy&&Network.packet.state.tutorialDismissed);
+ await page.waitForTimeout(700);
+ await page.screenshot({path:path.join(DIR,'01-hub-desktop.png'),fullPage:true});
+ await page.click('#nav-contracts');await page.waitForFunction(()=>GameApp.view==='contracts');await page.waitForTimeout(600);
+ await page.screenshot({path:path.join(DIR,'02-contracts-desktop.png'),fullPage:true});
+ await page.evaluate(()=>GameApp.showView('residence'));await page.waitForFunction(()=>GameApp.view==='residence');await page.waitForTimeout(600);
+ await page.screenshot({path:path.join(DIR,'03-residence-desktop.png'),fullPage:true});
+ await page.evaluate(()=>GameApp.showView('arena'));await page.waitForFunction(()=>GameApp.view==='arena');await page.waitForTimeout(700);
+ await page.screenshot({path:path.join(DIR,'05-arena-desktop.png'),fullPage:true});
+ await page.setViewportSize({width:390,height:844});await page.click('#nav-city');await page.waitForFunction(()=>GameApp.view==='city');await page.waitForTimeout(600);
+ await page.screenshot({path:path.join(DIR,'04-hub-mobile.png'),fullPage:true});
+ const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
+ if(errors.length)throw new Error(errors.join('\n'));
+ if(overflow)console.log('UWAGA: overflow 390px na hubie');
+ await browser.close();
+ console.log('SCREENS OK');
+})().catch(e=>{console.error('FATAL:',e.message.slice(0,300));process.exit(1)});

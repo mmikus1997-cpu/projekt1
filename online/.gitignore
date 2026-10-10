@@ -1,0 +1,11 @@
+data/
+backups/
+node_modules/
+tests/node_modules/
+screens*/
+__pycache__/
+*.sqlite3*
+tests/*.log
+tests/*-backups/
+*.backup_v059
+server.backup_v059/

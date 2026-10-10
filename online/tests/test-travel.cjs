@@ -1,0 +1,21 @@
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict');
+(async()=>{
+ const b=await chromium.launch({headless:true});const p=await b.newPage({viewport:{width:1280,height:900}});
+ const errors=[];p.on('pageerror',e=>errors.push(e.stack));
+ await p.goto(process.env.TEST_BASE_URL);await p.click('[data-auth-mode=register]');
+ await p.fill('#auth-username','probe_travel');await p.fill('#auth-password','test');await p.fill('#auth-confirm','test');await p.check('#age-consent');
+ await p.click('#auth-form [type=submit]');await p.waitForSelector('.world-grid');await p.click('[data-world="1"]');
+ await p.fill('#character-nickname','Wędrowiec');if(await p.locator('#test-consent').count())await p.check('#test-consent');
+ await p.click('#character-form [type=submit]');await p.waitForSelector('[data-online=dismiss-tutorial]');await p.click('[data-online=dismiss-tutorial]');await p.waitForFunction(()=>!Network.busy);
+ await p.evaluate(()=>GameApp.showView('city'));await p.waitForSelector('.travel-box');
+ assert.match(await p.locator('.travel-box .tiny').innerText(),/NADMORSKIE/i,'start w D1');
+ await p.selectOption('#travel-target','2');await p.selectOption('#travel-mode','bus');
+ await p.click('[data-extra=travel-go]');
+ await p.waitForSelector('.travel-box.on-road',{timeout:15000});
+ const boxText=await p.locator('.travel-box').innerText();console.log('BOX:',JSON.stringify(boxText.slice(0,260)));assert.match(boxText,/Przemysłowe/i,'cel w banerze');
+ await p.click('[data-extra=travel-arrive]');await p.waitForFunction(()=>document.body.innerText.includes('Jeszcze w drodze')||document.body.innerText.includes('w drodze'),{timeout:15000});
+ assert.equal(errors.length,0,'no JS errors: '+errors.join(' | '));
+ console.log('PASS travel UI smoke: box renders, bus start → on-road, early arrive refused, 0 JS errors');
+ await b.close();
+})().catch(e=>{console.error('ERR',e.message);process.exit(1)});

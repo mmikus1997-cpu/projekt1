@@ -1,0 +1,1008 @@
+{
+ "_comment": "UI v2 Etap 2: topografia mapy po stronie aplikacji (backend zamknięty). Id dzielnic i usług = id z backendu (travel.DISTRICTS, services.SERVICES). Plansza wirtualna w px; docelowo kafelki grafiki AI (Etap 5).",
+ "version": 4,
+ "home_district": 1,
+ "board": {
+  "width": 1600,
+  "height": 1120,
+  "background": "#16324A",
+  "_comment": "M1: plansza 1600x1120; środek 1200x840 = świat gry, brzegi (200/140 px) = czysto dekoracyjny krajobraz z grafiki."
+ },
+ "water": {
+  "sea": [
+   [
+    0,
+    704
+   ],
+   [
+    200,
+    704
+   ],
+   [
+    272,
+    740
+   ],
+   [
+    332,
+    872
+   ],
+   [
+    476,
+    926
+   ],
+   [
+    680,
+    946
+   ],
+   [
+    872,
+    932
+   ],
+   [
+    1040,
+    968
+   ],
+   [
+    1600,
+    968
+   ],
+   [
+    1600,
+    1120
+   ],
+   [
+    0,
+    1120
+   ]
+  ],
+  "rivers": [
+   {
+    "name": "Wstęga",
+    "width": 11,
+    "points": [
+     [
+      1330,
+      0
+     ],
+     [
+      1286,
+      140
+     ],
+     [
+      1208,
+      224
+     ],
+     [
+      1112,
+      284
+     ],
+     [
+      1040,
+      398
+     ],
+     [
+      920,
+      440
+     ],
+     [
+      872,
+      536
+     ],
+     [
+      848,
+      704
+     ],
+     [
+      806,
+      812
+     ],
+     [
+      764,
+      942
+     ]
+    ]
+   }
+  ],
+  "lakes": [
+   {
+    "name": "Jezioro Srebrne",
+    "x": 1147,
+    "y": 577,
+    "rx": 58,
+    "ry": 38
+   }
+  ],
+  "swamps": [
+   {
+    "x": 1352,
+    "y": 860,
+    "rx": 66,
+    "ry": 42
+   }
+  ]
+ },
+ "regions": [
+  {
+   "id": "coast",
+   "name": "Wybrzeże",
+   "color": "#1C3A5C",
+   "label": [
+    284,
+    674
+   ],
+   "districts": [
+    1,
+    4
+   ],
+   "polygon": [
+    [
+     200,
+     536
+    ],
+    [
+     380,
+     536
+    ],
+    [
+     560,
+     644
+    ],
+    [
+     752,
+     740
+    ],
+    [
+     764,
+     908
+    ],
+    [
+     476,
+     908
+    ],
+    [
+     332,
+     854
+    ],
+    [
+     272,
+     728
+    ],
+    [
+     200,
+     692
+    ]
+   ]
+  },
+  {
+   "id": "metro",
+   "name": "Metropolia",
+   "color": "#26314F",
+   "label": [
+    716,
+    386
+   ],
+   "districts": [
+    3,
+    5
+   ],
+   "polygon": [
+    [
+     596,
+     404
+    ],
+    [
+     872,
+     344
+    ],
+    [
+     1088,
+     398
+    ],
+    [
+     1064,
+     644
+    ],
+    [
+     824,
+     704
+    ],
+    [
+     608,
+     644
+    ]
+   ]
+  },
+  {
+   "id": "heavy",
+   "name": "Strefa Ciężka",
+   "color": "#3A2E28",
+   "label": [
+    260,
+    272
+   ],
+   "districts": [
+    2
+   ],
+   "polygon": [
+    [
+     236,
+     248
+    ],
+    [
+     584,
+     236
+    ],
+    [
+     608,
+     500
+    ],
+    [
+     392,
+     536
+    ],
+    [
+     236,
+     500
+    ]
+   ]
+  },
+  {
+   "id": "leisure",
+   "name": "Strefa Rekreacji",
+   "color": "#1F3B33",
+   "label": [
+    902,
+    726
+   ],
+   "districts": [
+    6
+   ],
+   "polygon": [
+    [
+     872,
+     716
+    ],
+    [
+     1112,
+     680
+    ],
+    [
+     1196,
+     812
+    ],
+    [
+     1088,
+     920
+    ],
+    [
+     896,
+     908
+    ]
+   ]
+  },
+  {
+   "id": "mine",
+   "name": "Góry · Kopalnia",
+   "color": "#33313A",
+   "label": [
+    1148,
+    186
+   ],
+   "districts": [
+    7
+   ],
+   "polygon": [
+    [
+     1112,
+     176
+    ],
+    [
+     1400,
+     164
+    ],
+    [
+     1400,
+     440
+    ],
+    [
+     1160,
+     464
+    ],
+    [
+     1088,
+     368
+    ]
+   ]
+  },
+  {
+   "id": "forest",
+   "name": "Lasy Wschodnie",
+   "color": "#163626",
+   "label": [
+    1232,
+    500
+   ],
+   "districts": [
+    8
+   ],
+   "polygon": [
+    [
+     1232,
+     488
+    ],
+    [
+     1400,
+     476
+    ],
+    [
+     1400,
+     824
+    ],
+    [
+     1256,
+     860
+    ],
+    [
+     1196,
+     680
+    ]
+   ]
+  }
+ ],
+ "districts": [
+  {
+   "id": 1,
+   "name": "Nadmorskie",
+   "icon": "🏖️",
+   "kind": "city",
+   "region": "coast",
+   "x": 428,
+   "y": 726
+  },
+  {
+   "id": 2,
+   "name": "Przemysłowe",
+   "icon": "🏭",
+   "kind": "resource",
+   "region": "heavy",
+   "x": 415,
+   "y": 298
+  },
+  {
+   "id": 3,
+   "name": "Centrum",
+   "icon": "🏙️",
+   "kind": "city",
+   "region": "metro",
+   "x": 752,
+   "y": 441
+  },
+  {
+   "id": 4,
+   "name": "Portowe",
+   "icon": "⚓",
+   "kind": "city",
+   "region": "coast",
+   "x": 609,
+   "y": 895
+  },
+  {
+   "id": 5,
+   "name": "Biznesowe",
+   "icon": "🏦",
+   "kind": "city",
+   "region": "metro",
+   "x": 985,
+   "y": 519
+  },
+  {
+   "id": 6,
+   "name": "Sportowe",
+   "icon": "🏟️",
+   "kind": "special",
+   "region": "leisure",
+   "x": 1018,
+   "y": 817
+  },
+  {
+   "id": 7,
+   "name": "Kopalnia",
+   "icon": "⛏️",
+   "kind": "resource",
+   "region": "mine",
+   "x": 1297,
+   "y": 311
+  },
+  {
+   "id": 8,
+   "name": "Lasy Wschodnie",
+   "icon": "🌲",
+   "kind": "resource",
+   "region": "forest",
+   "x": 1290,
+   "y": 674
+  }
+ ],
+ "landmarks": [
+  {
+   "id": "research",
+   "name": "Ośrodek Badawczy",
+   "icon": "🔬",
+   "x": 156,
+   "y": 959,
+   "note": "Wyspa — miejsce przyszłych eventów (placeholder)."
+  }
+ ],
+ "roads": [
+  {
+   "a": 1,
+   "b": 4,
+   "kind": "main",
+   "path": [
+    [
+     428,
+     726
+    ],
+    [
+     470,
+     775
+    ],
+    [
+     560,
+     800
+    ],
+    [
+     600,
+     815
+    ],
+    [
+     609,
+     895
+    ]
+   ]
+  },
+  {
+   "a": 1,
+   "b": 2,
+   "kind": "main",
+   "path": [
+    [
+     428,
+     726
+    ],
+    [
+     412,
+     690
+    ],
+    [
+     410,
+     600
+    ],
+    [
+     410,
+     460
+    ],
+    [
+     410,
+     335
+    ],
+    [
+     416,
+     298
+    ]
+   ]
+  },
+  {
+   "a": 2,
+   "b": 3,
+   "kind": "main",
+   "path": [
+    [
+     416,
+     298
+    ],
+    [
+     455,
+     325
+    ],
+    [
+     540,
+     355
+    ],
+    [
+     600,
+     380
+    ],
+    [
+     680,
+     410
+    ],
+    [
+     752,
+     441
+    ]
+   ]
+  },
+  {
+   "a": 3,
+   "b": 4,
+   "kind": "main",
+   "path": [
+    [
+     752,
+     441
+    ],
+    [
+     720,
+     500
+    ],
+    [
+     690,
+     560
+    ],
+    [
+     662,
+     640
+    ],
+    [
+     645,
+     720
+    ],
+    [
+     625,
+     810
+    ],
+    [
+     609,
+     895
+    ]
+   ]
+  },
+  {
+   "a": 3,
+   "b": 5,
+   "kind": "main",
+   "bridge": true,
+   "path": [
+    [
+     752,
+     441
+    ],
+    [
+     800,
+     478
+    ],
+    [
+     860,
+     500
+    ],
+    [
+     940,
+     510
+    ],
+    [
+     985,
+     519
+    ]
+   ]
+  },
+  {
+   "a": 5,
+   "b": 7,
+   "kind": "main",
+   "bridge": true,
+   "path": [
+    [
+     985,
+     519
+    ],
+    [
+     990,
+     440
+    ],
+    [
+     1050,
+     410
+    ],
+    [
+     1150,
+     380
+    ],
+    [
+     1210,
+     350
+    ],
+    [
+     1260,
+     328
+    ],
+    [
+     1297,
+     311
+    ]
+   ]
+  },
+  {
+   "a": 5,
+   "b": 6,
+   "kind": "main",
+   "path": [
+    [
+     985,
+     519
+    ],
+    [
+     990,
+     600
+    ],
+    [
+     990,
+     680
+    ],
+    [
+     1000,
+     760
+    ],
+    [
+     1018,
+     817
+    ]
+   ]
+  },
+  {
+   "a": 4,
+   "b": 6,
+   "kind": "local",
+   "bridge": true,
+   "path": [
+    [
+     609,
+     895
+    ],
+    [
+     640,
+     832
+    ],
+    [
+     700,
+     826
+    ],
+    [
+     780,
+     822
+    ],
+    [
+     900,
+     818
+    ],
+    [
+     960,
+     815
+    ],
+    [
+     1018,
+     817
+    ]
+   ]
+  },
+  {
+   "a": 6,
+   "b": 8,
+   "kind": "local",
+   "path": [
+    [
+     1018,
+     817
+    ],
+    [
+     1080,
+     780
+    ],
+    [
+     1150,
+     742
+    ],
+    [
+     1230,
+     702
+    ],
+    [
+     1290,
+     674
+    ]
+   ]
+  },
+  {
+   "a": 7,
+   "b": 8,
+   "kind": "local",
+   "path": [
+    [
+     1297,
+     311
+    ],
+    [
+     1272,
+     360
+    ],
+    [
+     1275,
+     440
+    ],
+    [
+     1285,
+     520
+    ],
+    [
+     1290,
+     600
+    ],
+    [
+     1290,
+     674
+    ]
+   ]
+  }
+ ],
+ "services": [
+  {
+   "id": "biblioteka",
+   "district": 1,
+   "x": 292,
+   "y": 571,
+   "desc": "Cicha praca z książkami — spokojna zmiana, mały koszt energii."
+  },
+  {
+   "id": "sprzatanie",
+   "district": 2,
+   "x": 298,
+   "y": 279,
+   "desc": "Firma sprzątająca obsługuje hale i biura całego regionu."
+  },
+  {
+   "id": "kurier",
+   "district": 2,
+   "x": 486,
+   "y": 447,
+   "desc": "Paczki i dostawy — dużo jazdy, stały popyt."
+  },
+  {
+   "id": "minimarket",
+   "district": 3,
+   "x": 849,
+   "y": 363,
+   "desc": "Osiedlowy sklep czynny do późna."
+  },
+  {
+   "id": "kawiarnia",
+   "district": 3,
+   "x": 830,
+   "y": 609,
+   "desc": "Kawiarnia usługowa w sercu Centrum."
+  },
+  {
+   "id": "klinika",
+   "district": 3,
+   "x": 635,
+   "y": 499,
+   "desc": "Prywatna klinika — wymagająca, dobrze płatna."
+  },
+  {
+   "id": "callcenter",
+   "district": 4,
+   "x": 467,
+   "y": 830,
+   "desc": "Call center przy porcie — telefony 24/7."
+  },
+  {
+   "id": "marketing",
+   "district": 5,
+   "x": 1044,
+   "y": 428,
+   "desc": "Agencja marketingowa dla firm z Biznesowego."
+  },
+  {
+   "id": "grafika",
+   "district": 5,
+   "x": 953,
+   "y": 609,
+   "desc": "Studio graficzne — kreatywna praca przy komputerze."
+  },
+  {
+   "id": "park",
+   "district": 6,
+   "x": 1135,
+   "y": 810,
+   "desc": "Park rozrywki i obiekty sportowe."
+  },
+  {
+   "id": "warsztat",
+   "district": 7,
+   "x": 1173,
+   "y": 389,
+   "desc": "Warsztat maszyn górniczych."
+  },
+  {
+   "id": "hotel",
+   "district": 8,
+   "x": 1524,
+   "y": 642,
+   "desc": "Hotel w lesie — goście przyjeżdżają po ciszę."
+  }
+ ],
+ "textures": [
+  {
+   "_comment": "Teren pod drogami — zastępczy szary prostokąt, docelowo grafika AI 2000x1400",
+   "asset": "assets/images/map/terrain_base.png",
+   "layer": "under",
+   "rect": [
+    0,
+    0,
+    1600,
+    1120
+   ],
+   "opacity": 0.18,
+   "max_px": 2048,
+   "enabled": false
+  },
+  {
+   "_comment": "Nakładka nad drogami (chmury/korony drzew) — zastępcza",
+   "asset": "assets/images/map/overlay_clouds.png",
+   "layer": "over",
+   "rect": [
+    0,
+    0,
+    1600,
+    1120
+   ],
+   "opacity": 0.35,
+   "max_px": 1024,
+   "enabled": false
+  }
+ ],
+ "ambient": {
+  "_comment": "Etap 5: życie mapy (CustomPaint). Współrzędne planszy.",
+  "deer": {
+   "path": [
+    [
+     1452,
+     493
+    ],
+    [
+     1400,
+     583
+    ],
+    [
+     1439,
+     700
+    ],
+    [
+     1530,
+     778
+    ]
+   ]
+  },
+  "boat": {
+   "path": [
+    [
+     726,
+     1037
+    ],
+    [
+     1037,
+     1063
+    ],
+    [
+     1582,
+     1076
+    ]
+   ]
+  },
+  "chimneys": [
+   [
+    311,
+    240
+   ],
+   [
+    434,
+    231
+   ],
+   [
+    288,
+    246
+   ]
+  ]
+ },
+ "art": {
+  "_comment": "M1: malowana grafika całego regionu pod pinezkami. Podmiana = nowy plik w tej samej ścieżce (proporcje 10:7). Prompty: assets/images/map/PROMPTY.md",
+  "world": {
+   "asset": "assets/images/map/world.jpg",
+   "rect": [
+    0,
+    0,
+    1600,
+    1120
+   ],
+   "max_px": 2000
+  },
+  "hide_vector_ground": true,
+  "vector_roads": false,
+  "_layout": "Współrzędne dzielnic/usług dopasowane do world.jpg (×1.2966 z grafiki 1234×864). Po podmianie obrazu na inny układ trzeba poprawić x/y.",
+  "regions": {
+   "1": {
+    "asset": "assets/images/map/region_1.jpg",
+    "rect": [
+     121,
+     481,
+     479,
+     335
+    ]
+   },
+   "2": {
+    "asset": "assets/images/map/region_2.jpg",
+    "rect": [
+     143,
+     189,
+     497,
+     348
+    ]
+   },
+   "3": {
+    "asset": "assets/images/map/region_3.jpg",
+    "rect": [
+     438,
+     273,
+     609,
+     426
+    ]
+   },
+   "4": {
+    "asset": "assets/images/map/region_4.jpg",
+    "rect": [
+     318,
+     708,
+     440,
+     308
+    ]
+   },
+   "5": {
+    "asset": "assets/images/map/region_5.jpg",
+    "rect": [
+     741,
+     338,
+     516,
+     361
+    ]
+   },
+   "6": {
+    "asset": "assets/images/map/region_6.jpg",
+    "rect": [
+     856,
+     660,
+     440,
+     308
+    ]
+   },
+   "7": {
+    "asset": "assets/images/map/region_7.jpg",
+    "rect": [
+     1015,
+     196,
+     440,
+     308
+    ]
+   },
+   "8": {
+    "asset": "assets/images/map/region_8.jpg",
+    "rect": [
+     1146,
+     499,
+     454,
+     318
+    ]
+   }
+  },
+  "_regions": "M3: widok okolicy po kliknięciu dzielnicy. rect = fragment planszy [x,y,w,h] (10:7), który pokazuje grafika regionu; pinezki usług liczone z tych samych współrzędnych planszy."
+ },
+ "_roads": "Mapa M4: roads[].path = przebieg drogi po grafice world.jpg (od a do b); auta NPC jadą po tej linii. Brak path → prosta linia."
+}
